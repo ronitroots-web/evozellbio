@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EvoZell Biologics ist ein deutsches CDMO für moderne Biologika mit Fokus auf Antikörper, rekombinante Proteine, Zell- und Gentherapien, mRNA und neue Wirkstoffmodalitäten." />
+  <meta name="theme-color" content="#f5f1ea" />
+  <title>EvoZell Biologics | Biologika-CDMO</title>
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --bg-soft: #fbf8f3;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-strong: #ffffff;
+      --surface-warm: #f9f4ed;
+      --line: rgba(37, 54, 66, 0.10);
+      --line-strong: rgba(37, 54, 66, 0.16);
+      --text: #20303d;
+      --muted: #5e6b75;
+      --soft: #7b8790;
+      --primary: #2f6f73;
+      --primary-deep: #245b5f;
+      --primary-soft: rgba(47, 111, 115, 0.12);
+      --accent: #c58b61;
+      --accent-soft: rgba(197, 139, 97, 0.14);
+      --shadow-lg: 0 22px 60px rgba(31, 46, 56, 0.08);
+      --shadow-md: 0 14px 30px rgba(31, 46, 56, 0.06);
+      --shadow-sm: 0 8px 22px rgba(31, 46, 56, 0.05);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1220px;
+      --transition: 240ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(47,111,115,.10), transparent 28%),
+        radial-gradient(circle at 90% 8%, rgba(197,139,97,.10), transparent 26%),
+        linear-gradient(180deg, #f7f3ed 0%, #f2eee6 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(32,48,61,0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32,48,61,0.016) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,0));
+      opacity: .7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section { padding: 92px 0; }
+    .section-tight { padding: 62px 0; }
+
+    h1, h2, h3, h4, p { margin: 0; }
+
+    h1, h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    h1 {
+      font-size: clamp(3.3rem, 7.2vw, 6.7rem);
+      line-height: .92;
+    }
+    h2 {
+      font-size: clamp(2.2rem, 4vw, 4.25rem);
+      line-height: 1.02;
+    }
+    h3 {
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h4 {
+      font-size: 1.05rem;
+      line-height: 1.25;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1rem;
+    }
+
+    .muted { color: var(--muted); }
+    .soft { color: var(--soft); }
+    .small { font-size: .93rem; line-height: 1.7; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow-sm);
+      color: var(--primary-deep);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 0 0 6px rgba(47,111,115,.10);
+      flex: 0 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      backdrop-filter: blur(16px);
+      background: rgba(246,242,235,.76);
+      border-bottom: 1px solid rgba(37,54,66,.08);
+    }
+    .nav-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #ffffff, #edf3ef);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: .92;
+    }
+    .brand-mark::before {
+      width: 18px;
+      height: 18px;
+      left: 8px;
+      top: 8px;
+      box-shadow: 14px 14px 0 rgba(47,111,115,.16);
+    }
+    .brand-mark::after {
+      width: 8px;
+      height: 8px;
+      right: 8px;
+      bottom: 8px;
+    }
+    .brand-text strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: .01em;
+    }
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: var(--soft);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 8px 4px;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 3px;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+      opacity: .72;
+    }
+    .nav-links a:hover { color: var(--primary-deep); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 600;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #3e8f91);
+      color: #fff;
+      box-shadow: 0 18px 30px rgba(47,111,115,.22);
+    }
+    .btn-primary:hover { box-shadow: 0 20px 34px rgba(47,111,115,.28); }
+    .btn-secondary {
+      background: rgba(255,255,255,.72);
+      color: var(--text);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover { border-color: rgba(47,111,115,.22); }
+
+    .hero { padding: 82px 0 48px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 44px;
+      align-items: center;
+    }
+    .hero-copy { max-width: 710px; }
+    .hero-copy .eyebrow { margin-bottom: 22px; }
+    .hero-copy .lead {
+      margin-top: 24px;
+      font-size: 1.12rem;
+      line-height: 1.95;
+      max-width: 660px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .hero-proof {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .proof-card {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.66);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      padding: 18px 18px 16px;
+    }
+    .proof-card strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .proof-card span {
+      color: var(--soft);
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .halo {
+      position: absolute;
+      inset: 58px 12px 28px;
+      border-radius: 38px;
+      border: 1px solid rgba(37,54,66,.08);
+      background:
+        radial-gradient(circle at 28% 24%, rgba(47,111,115,.14), transparent 22%),
+        radial-gradient(circle at 80% 72%, rgba(197,139,97,.14), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.86), rgba(248,244,238,.74));
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .halo::before,
+    .halo::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(47,111,115,.14);
+    }
+    .halo::before {
+      width: 290px;
+      height: 290px;
+      right: -90px;
+      top: -80px;
+    }
+    .halo::after {
+      width: 430px;
+      height: 430px;
+      left: -140px;
+      bottom: -140px;
+      border-color: rgba(197,139,97,.14);
+    }
+    .lab-window {
+      position: relative;
+      width: min(100%, 480px);
+      padding: 30px;
+      border-radius: 34px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(37,54,66,.10);
+      box-shadow: 0 26px 54px rgba(31,46,56,.10);
+      backdrop-filter: blur(14px);
+      transform: translateY(10px);
+    }
+    .lab-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      color: var(--soft);
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .dna {
+      position: relative;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .strand {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-left-color: rgba(47,111,115,.18);
+      border-right-color: rgba(197,139,97,.18);
+      animation: spin 16s linear infinite;
+    }
+    .strand:nth-child(2) {
+      width: 330px;
+      height: 330px;
+      animation-duration: 22s;
+      animation-direction: reverse;
+      opacity: .68;
+    }
+    .strand:nth-child(3) {
+      width: 420px;
+      height: 420px;
+      animation-duration: 28s;
+      opacity: .42;
+    }
+    .strand::before,
+    .strand::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 0 0 10px rgba(47,111,115,.08);
+    }
+    .strand::before { top: 18px; }
+    .strand::after { bottom: 18px; }
+    .center-badge {
+      position: relative;
+      width: 168px;
+      height: 168px;
+      border-radius: 34px;
+      border: 1px solid rgba(37,54,66,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(247,243,237,.72));
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+    }
+    .center-badge strong {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .center-badge span {
+      display: block;
+      color: var(--muted);
+      font-size: .87rem;
+      line-height: 1.55;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 1px solid rgba(47,111,115,.14);
+      color: var(--primary-deep);
+      font-size: .88rem;
+      font-weight: 500;
+    }
+    .chip.alt {
+      background: var(--accent-soft);
+      border-color: rgba(197,139,97,.14);
+      color: #9c6036;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .stat {
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.66);
+      padding: 20px 18px;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+    }
+    .stat strong {
+      display: block;
+      color: var(--primary-deep);
+      font-size: 1.45rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat span {
+      color: var(--soft);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+    .section-head p { margin-top: 18px; max-width: 720px; }
+
+    .cards {
+      display: grid;
+      gap: 18px;
+    }
+    .cards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      padding: 26px;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(47,111,115,.22);
+      box-shadow: 0 18px 42px rgba(31,46,56,.10);
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -26px -26px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,111,115,.10), transparent 68%);
+      pointer-events: none;
+    }
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(47,111,115,.15);
+      background: linear-gradient(180deg, rgba(47,111,115,.12), rgba(47,111,115,.05));
+      color: var(--primary-deep);
+      font-size: 1.18rem;
+      font-weight: 700;
+    }
+    .icon.accent {
+      border-color: rgba(197,139,97,.15);
+      background: linear-gradient(180deg, rgba(197,139,97,.12), rgba(197,139,97,.05));
+      color: #9d6137;
+    }
+    .card p { margin-top: 12px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .pill {
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.66);
+      color: var(--muted);
+      box-shadow: var(--shadow-sm);
+      font-size: .92rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 26px;
+      top: 14px;
+      bottom: 14px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(47,111,115,.34), rgba(197,139,97,.18));
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      align-items: start;
+      position: relative;
+    }
+    .step-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #fff, #f0f4f1);
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      place-items: center;
+      color: var(--primary-deep);
+      font-weight: 700;
+      z-index: 1;
+    }
+    .step-body {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 20px;
+    }
+    .step-body p { margin-top: 8px; }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .quality-item {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+      box-shadow: var(--shadow-sm);
+      padding: 22px;
+    }
+    .quality-item strong {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--primary-deep);
+      font-size: 1rem;
+    }
+
+    .insight-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .insight {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: center;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+      box-shadow: var(--shadow-sm);
+      padding: 16px;
+    }
+    .thumb {
+      min-height: 84px;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(47,111,115,.16), rgba(197,139,97,.12)),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.5), transparent 35%);
+      border: 1px solid rgba(37,54,66,.08);
+    }
+    .thumb::before,
+    .thumb::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,.74);
+      opacity: .68;
+    }
+    .thumb::before {
+      width: 32px;
+      height: 32px;
+      right: 10px;
+      top: 10px;
+    }
+    .thumb::after {
+      width: 16px;
+      height: 16px;
+      left: 16px;
+      bottom: 16px;
+    }
+    .insight p { margin-top: 8px; }
+
+    .cta {
+      padding: 24px 0 10px;
+    }
+    .cta-box {
+      border-radius: 36px;
+      border: 1px solid rgba(37,54,66,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(249,244,237,.74));
+      box-shadow: var(--shadow-lg);
+      padding: 34px;
+    }
+
+    .footer {
+      padding: 44px 0 70px;
+      border-top: 1px solid rgba(37,54,66,.08);
+      color: var(--soft);
+      font-size: .95rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links a { color: var(--soft); }
+    .footer-links a:hover { color: var(--primary-deep); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .two-col,
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 560px; }
+      .cards.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .quality-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 760px) {
+      .section, .hero { padding: 64px 0; }
+      .container { width: min(100% - 24px, var(--container)); }
+      .nav-inner { min-height: auto; padding: 16px 0; align-items: flex-start; }
+      .nav-actions { display: none; }
+      .hero-proof,
+      .cards.cols-2,
+      .cards.cols-3,
+      .stats { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 470px; }
+      .lab-window { padding: 20px; }
+      .dna { height: 280px; }
+      .strand { width: 170px; height: 170px; }
+      .strand:nth-child(2) { width: 240px; height: 240px; }
+      .strand:nth-child(3) { width: 310px; height: 310px; }
+      .center-badge { width: 140px; height: 140px; }
+      h1 { font-size: clamp(2.7rem, 14vw, 4.4rem); }
+      h2 { font-size: clamp(2.1rem, 9vw, 3.2rem); }
+      .insight { grid-template-columns: 1fr; }
+      .thumb { min-height: 120px; }
+      .timeline::before { left: 24px; }
+      .step { grid-template-columns: 52px 1fr; }
+      .cta-box { padding: 24px; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand" aria-label="EvoZell Biologics">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>EvoZell Biologics</strong>
+          <span>Biologika-CDMO</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#modalitaeten">Modalitäten</a>
+        <a href="#prozess">Prozess</a>
+        <a href="#qualitaet">Qualität</a>
+        <a href="#einblicke">Einblicke</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#einblicke">Profil</a>
+        <a class="btn btn-primary" href="#kontakt">Nächster Schritt</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Deutschland · Entwicklung · Herstellung</div>
+          <h1>Entwicklung und Herstellung komplexer Biologika mit wissenschaftlicher Präzision.</h1>
+          <p class="lead muted">
+            EvoZell Biologics ist ein in Deutschland ansässiges CDMO mit Fokus auf Antikörper, rekombinante Proteine, Zell- und Gentherapien, mRNA sowie neue Biologika-Modalitäten. Das Unternehmen unterstützt Biotech- und Pharmaunternehmen durch integrierte Prozessentwicklung, analytische Charakterisierung und skalierbare Herstellungsstrategien für komplexe therapeutische Programme.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#leistungen">Leistungen ansehen</a>
+            <a class="btn btn-secondary" href="#prozess">Arbeitsweise verstehen</a>
+          </div>
+
+          <div class="hero-proof">
+            <div class="proof-card">
+              <strong>Integrierte Entwicklung</strong>
+              <span>Verzahnte Prozessentwicklung, Analytik und Herstellungslogik für moderne Biologika.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Modality-Flexible Plattform</strong>
+              <span>Unterstützung für etablierte und neue therapeutische Formate innerhalb eines konsistenten Qualitätsrahmens.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Qualitätsorientierte Umsetzung</strong>
+              <span>Fokus auf Prozesskontrolle, analytische Belastbarkeit und nachvollziehbare technische Dokumentation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="halo"></div>
+          <div class="lab-window">
+            <div class="lab-top">
+              <span>Modulare Plattform</span>
+              <span>Deutschland</span>
+            </div>
+
+            <div class="dna" aria-hidden="true">
+              <div class="strand"></div>
+              <div class="strand"></div>
+              <div class="strand"></div>
+              <div class="center-badge">
+                <div>
+                  <strong>EvoZell</strong>
+                  <span>Entwicklung, Analytik und Herstellung für komplexe Biologika-Programme</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Schwerpunkte">
+              <span class="chip">Antikörper</span>
+              <span class="chip">Rekombinante Proteine</span>
+              <span class="chip alt">Zelltherapien</span>
+              <span class="chip alt">Gentherapien</span>
+              <span class="chip">mRNA</span>
+              <span class="chip">Neue Biologika</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="stats reveal">
+          <div class="stat">
+            <strong>6</strong>
+            <span>therapeutische Plattformen mit definierter technologischer Spezialisierung</span>
+          </div>
+          <div class="stat">
+            <strong>End-to-End</strong>
+            <span>integrierte Workflows von der frühen Entwicklung bis zur skalierbaren Herstellung</span>
+          </div>
+          <div class="stat">
+            <strong>Europa</strong>
+            <span>standortbezogene Entwicklungs- und Qualitätsorientierung mit globaler Projektperspektive</span>
+          </div>
+          <div class="stat">
+            <strong>CMC</strong>
+            <span>fokussiert auf Prozessrobustheit, Dokumentation und technische Reproduzierbarkeit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Leistungsportfolio</div>
+          <h2>Integrierte Entwicklungs- und Herstellungsleistungen für moderne Biologika</h2>
+          <p>
+            EvoZell kombiniert wissenschaftliche Entwicklung, analytische Charakterisierung und skalierbare Herstellungsprozesse innerhalb eines integrierten CDMO-Modells für komplexe therapeutische Programme.
+          </p>
+        </div>
+
+        <div class="cards cols-3">
+          <article class="card reveal">
+            <div class="icon">01</div>
+            <h4>Antikörper-Entwicklung</h4>
+            <p>Upstream- und Downstream-Prozessentwicklung, analytische Charakterisierung sowie Vorbereitung auf skalierbare Herstellungsprozesse für monoklonale und neue Antikörperformate.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon accent">02</div>
+            <h4>Rekombinante Proteine</h4>
+            <p>Entwicklung und Optimierung rekombinanter Proteinplattformen mit Fokus auf Prozessstabilität, Reinheit und reproduzierbare Produktionsparameter.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">03</div>
+            <h4>Zell- und Gentherapien</h4>
+            <p>Unterstützung für Zell- und Gentherapieprogramme mit Fokus auf Prozesskontrolle, analytische Konsistenz und skalierbare technische Abläufe.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon accent">04</div>
+            <h4>mRNA-Plattformen</h4>
+            <p>Entwicklungs- und Herstellungsstrategien für mRNA-basierte Therapeutika einschließlich analytischer Methodenentwicklung und Transferprozessen.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">05</div>
+            <h4>Analytik und Qualität</h4>
+            <p>Analytische Methodenentwicklung, Charakterisierung und qualitätsorientierte Dokumentation mit direkter Ausrichtung auf regulatorische und CMC-relevante Anforderungen.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon accent">06</div>
+            <h4>Technologietransfer</h4>
+            <p>Technologietransfer und Scale-up-Strategien zur Unterstützung stabiler Übergänge zwischen Entwicklungs-, Pilot- und Produktionsumgebungen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="modalitaeten" class="section" style="background: rgba(255,255,255,0.22); border-top: 1px solid rgba(37,54,66,0.06); border-bottom: 1px solid rgba(37,54,66,0.06);">
+      <div class="container two-col">
+        <div class="section-head reveal">
+          <div class="eyebrow">Modalitäten</div>
+          <h2>Technologische Unterstützung für etablierte und neue Biologika-Modalitäten</h2>
+          <p>
+            Die Entwicklungs- und Herstellungsplattform von EvoZell wurde für therapeutische Programme konzipiert, die hohe Anforderungen an Prozessstabilität, analytische Tiefe und technische Skalierbarkeit stellen.
+          </p>
+          <div class="pill-list">
+            <span class="pill">Monoklonale Antikörper</span>
+            <span class="pill">Bispezifische Antikörper</span>
+            <span class="pill">Fusionsproteine</span>
+            <span class="pill">Rekombinante Enzyme</span>
+            <span class="pill">Virale Vektoren</span>
+            <span class="pill">mRNA-Formate</span>
+            <span class="pill">Neue Biologika</span>
+          </div>
+        </div>
+
+        <div class="cards cols-2">
+          <div class="card reveal">
+            <div class="icon">A</div>
+            <h4>Antikörper</h4>
+            <p>Entwicklung und Herstellung von Antikörperformaten mit Fokus auf Prozesskontrolle, Charakterisierung und skalierbare Produktionsstrategien.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon accent">P</div>
+            <h4>Rekombinante Proteine</h4>
+            <p>Optimierte Plattformen für rekombinante Proteine mit Fokus auf Expression, Reinigung und analytische Konsistenz.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">C</div>
+            <h4>Zelltherapien</h4>
+            <p>Unterstützung für komplexe Zelltherapie-Workflows mit strukturierter Prozessführung und kontrollierter Entwicklung.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon accent">G</div>
+            <h4>Gentherapien</h4>
+            <p>Entwicklungs- und Herstellungsunterstützung für Gentherapieprogramme mit Fokus auf Qualität, Dokumentation und Prozesssicherheit.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">M</div>
+            <h4>mRNA</h4>
+            <p>mRNA-orientierte Entwicklungsstrategien mit Fokus auf analytische Belastbarkeit, Prozessstabilität und Transferfähigkeit.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon accent">N</div>
+            <h4>Neue Biologika</h4>
+            <p>Unterstützung neuer Biologika-Modalitäten einschließlich komplexer und neuartiger therapeutischer Konstrukte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prozess" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Arbeitsweise</div>
+          <h2>Strukturierte Entwicklungs- und Herstellungsprozesse für komplexe therapeutische Programme</h2>
+          <p>
+            Jedes Programm folgt einem strukturierten Entwicklungsmodell, das wissenschaftliche Machbarkeit, analytische Anforderungen und skalierbare Herstellungsstrategien miteinander verbindet.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="step reveal">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Programmverständnis</h4>
+              <p>Bewertung von Zielmolekül, Entwicklungsstatus, Qualitätsanforderungen und potenziellen CMC-Risiken zur Definition geeigneter Entwicklungsstrategien.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Prozessentwicklung</h4>
+              <p>Optimierung von Upstream- und Downstream-Prozessen zur Unterstützung robuster, reproduzierbarer und skalierbarer Herstellungsabläufe.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Analytische Charakterisierung</h4>
+              <p>Entwicklung analytischer Methoden zur Bewertung von Identität, Reinheit, Stabilität und Qualitätsattributen biologischer Wirkstoffe.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Technologietransfer</h4>
+              <p>Kontrollierte Transferprozesse zwischen Entwicklungs- und Produktionsumgebungen mit strukturierter technischer Dokumentation.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h4>Herstellung und Freigabelogik</h4>
+              <p>Herstellungsorientierte Umsetzung mit Fokus auf Prozesskonsistenz, Chargenreproduzierbarkeit und qualitätsorientierte Arbeitsabläufe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="qualitaet" class="section" style="background: rgba(255,255,255,0.22); border-top: 1px solid rgba(37,54,66,0.06); border-bottom: 1px solid rgba(37,54,66,0.06);">
+      <div class="container two-col">
+        <div class="section-head reveal">
+          <div class="eyebrow">Qualität und Compliance</div>
+          <h2>Qualitätsorientierte Entwicklungs- und Herstellungsstandards</h2>
+          <p>
+            EvoZell verfolgt einen qualitätsorientierten Entwicklungsansatz mit Fokus auf Dokumentation, analytische Nachvollziehbarkeit und belastbare technische Prozesse entlang des gesamten Entwicklungszyklus.
+          </p>
+        </div>
+
+        <div class="quality-grid">
+          <div class="quality-item reveal">
+            <strong>Qualitätsorientierte Entwicklung</strong>
+            <p>Entwicklungsprozesse werden mit Blick auf spätere Herstellungs-, Freigabe- und Skalierungsanforderungen konzipiert.</p>
+          </div>
+          <div class="quality-item reveal">
+            <strong>Nachvollziehbare Dokumentation</strong>
+            <p>Technische Daten, Entwicklungsparameter und Prozessentscheidungen werden strukturiert dokumentiert und nachvollziehbar geführt.</p>
+          </div>
+          <div class="quality-item reveal">
+            <strong>CMC-Denken von Anfang an</strong>
+            <p>Entwicklung, Analytik und Herstellung werden als integrierte Bestandteile eines konsistenten CMC-orientierten Modells betrachtet.</p>
+          </div>
+          <div class="quality-item reveal">
+            <strong>Validierungsbereite Denkweise</strong>
+            <p>Arbeitsabläufe orientieren sich an qualitätsrelevanten und GMP-nahen Anforderungen moderner Biologika-Programme.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="einblicke" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Einblicke</div>
+          <h2>Fachliche Einblicke in moderne Biologika-Entwicklung</h2>
+          <p>
+            Technische und strategische Einblicke in Entwicklungs-, Analyse- und Herstellungsprozesse moderner therapeutischer Plattformen.
+          </p>
+        </div>
+
+        <div class="insight-list">
+          <article class="insight reveal">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h4>Warum flexible CDMO-Strukturen für moderne Biologika immer wichtiger werden</h4>
+              <p>Analyse integrierter Entwicklungsplattformen für therapeutische Modalitäten mit unterschiedlichen Prozess- und Qualitätsanforderungen.</p>
+            </div>
+          </article>
+          <article class="insight reveal">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h4>CMC-Readiness bei mRNA- und Zelltherapieprogrammen</h4>
+              <p>Überblick über analytische Anforderungen, Prozesskontrolle und technische Übergabestrukturen in mRNA- und Zelltherapieprogrammen.</p>
+            </div>
+          </article>
+          <article class="insight reveal">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h4>Vom frühen Prozessverständnis zur skalierbaren Herstellung</h4>
+              <p>Zusammenhang zwischen früher Prozessentwicklung, analytischer Charakterisierung und langfristiger Herstellungsstabilität.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="cta">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="two-col" style="align-items: center;">
+            <div>
+              <div class="eyebrow">Positionierung</div>
+              <h2>Wissenschaftliche Entwicklung mit Fokus auf Skalierbarkeit und Prozesskontrolle</h2>
+              <p style="margin-top: 18px;">
+                EvoZell Biologics unterstützt komplexe Entwicklungsprogramme durch integrierte technische Workflows, analytische Expertise und strukturierte Herstellungsstrategien für moderne Biologika.
+              </p>
+            </div>
+            <div class="cards" style="gap: 14px;">
+              <div class="proof-card">
+                <strong>Realistisch</strong>
+                <span>Fokus auf wissenschaftliche Belastbarkeit, nachvollziehbare Prozesse und realistische Entwicklungsstrategien.</span>
+              </div>
+              <div class="proof-card">
+                <strong>Vertrauenswürdig</strong>
+                <span>Klare technische Kommunikation und strukturierte Entwicklungsmodelle für anspruchsvolle therapeutische Programme.</span>
+              </div>
+              <div class="proof-card">
+                <strong>Direkt nutzbar</strong>
+                <span>Modulare Entwicklungs- und Herstellungsplattform für moderne Biologika- und Advanced-Therapy-Programme.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom: 12px;">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-text">
+            <strong>EvoZell Biologics</strong>
+            <span>Biologika-CDMO</span>
+          </div>
+        </div>
+        <p class="small">
+          Entwicklung, Analytik u
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#modalitaeten">Modalitäten</a>
+        <a href="#prozess">Prozess</a>
+        <a href="#qualitaet">Qualität</a>
+        <a href="#einblicke">Einblicke</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    const heroVisual = document.querySelector('.hero-visual');
+    if (heroVisual) {
+      heroVisual.addEventListener('mousemove', (e) => {
+        const r = heroVisual.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        const halo = heroVisual.querySelector('.halo');
+        const lab = heroVisual.querySelector('.lab-window');
+        if (halo && lab) {
+          halo.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+          lab.style.transform = `translate(${x * -8}px, ${y * -8}px) translateY(10px)`;
+        }
+      });
+
+      heroVisual.addEventListener('mouseleave', () => {
+        const halo = heroVisual.querySelector('.halo');
+        const lab = heroVisual.querySelector('.lab-window');
+        if (halo) halo.style.transform = 'translate(0, 0)';
+        if (lab) lab.style.transform = 'translateY(10px)';
+      });
+    }
+  </script>
+</body>
+</html>
